@@ -9,27 +9,37 @@ import Product from './Product/Product'
 
 
 const Products = () => {
-    const dispatch = useDispatch();
-    const classes = useStyles()
-    const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+  const dispatch = useDispatch();
+  const classes = useStyles()
+  const productList = useSelector(state => state.productList)
+  const { loading, error, products } = productList
 
-    useEffect(() => {
-        dispatch(listProducts())
-        console.log(products)
-    }, []);
-    return( 
-        <main className={classes.content}>
-            <div className={classes.toolbar} />
-            <Grid container justify='center' spacing={4}>
-                {products.map((product) => (
-                    <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                        <Product product={product} />
-                    </Grid>
-                ))}
+  useEffect(() => {
+    dispatch(listProducts())
+  }, [dispatch]);
+  return(
+    <>
+      {loading ? (
+        <>loading</>
+      ) : error ? (
+        error
+      ) : (
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Grid container justify='center' spacing={4}>
+          {products.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+              <Product product={product} />
             </Grid>
-        </main>
+          ))}
+        </Grid>
+      </main>
     )
+  }
+
+  </> 
+      
+  )
 }
 
 export default Products
