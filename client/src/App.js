@@ -7,16 +7,12 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Navbar />
       <Route exact path='/'>
-        <div>
-          <Navbar />
           <Products />
-        </div>
       </Route>
 
-      <Route path='/product/:id' component={ProductScreen}>
-
-      </Route>
+      <Route path='/product/:id' component={ProductScreen} />
     </BrowserRouter>
     
   )
