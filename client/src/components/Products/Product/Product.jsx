@@ -22,9 +22,14 @@ const Product = ({ product }) => {
                     </Typography>
                 </div>
                 <CardActions disableSpacing className={classes.CardActions}>
-                    <IconButton arial-label='Add to cart'>
-                        <AddShoppingCart />
+                  {product.inStock > 0 
+                  ? <IconButton arial-label='Add to cart'>
+                      <AddShoppingCart />
                     </IconButton>
+                    
+                  : <></>
+                   }
+                    
                 </CardActions>
             </CardContent>
         </Card>
