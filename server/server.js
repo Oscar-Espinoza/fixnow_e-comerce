@@ -10,6 +10,15 @@ app.get('/api/products', (req, res) => {
     res.send(data.products)
 })
 
+app.get('/api/products/:id', (req, res) => {
+  const product = data.products.find( (product, index) => {
+    if (product.id === req.params.id) {
+      res.send(data.products[index])
+    }
+  })
+  res.send(data.products)
+})
+
 app.get('/', (req, res) => {
     res.send('Server is ready')
 });

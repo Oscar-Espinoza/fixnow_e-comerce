@@ -1,28 +1,39 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/actions/cartActions'
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 
 const cartScreen = (props) => {
-  const productId = props.match.params.id;
-    const qty = props.location.search
-    ? Number(props.location.search.split('=')[1])
-    : 1
 
-    const dispatch = useDispatch()
+  const createCartList = () => {
+    const items = props.cartItems
+    if (items.length !== 0) {
+      console.log(items)
+      return items.map((product => {
+        return (
+          <li key={product.id}>{product.name}</li>
+        )
+      }))
+    } else {
+      return (<h3>No hay items en el carro</h3> )
+    }
+  }
+    
 
-    useEffect(() => {
-      if(productId) {
-        dispatch(addToCart(productId, qty))
-      }
-    }, [dispatch, productId, qty])
+
   return (
     <div>
       <h1>Cart Screen</h1>
-      <p>
-        ADD TO CART : ProductId: {productId} Qty: {qty}
-      </p>
+      <ul>
+        {createCartList()}
+      </ul>
     </div>
   )
 }
 
-export default cartScreen
+function mapStateToProps(state) {
+  return {
+    cartItems: state.cart.cartItems
+  }
+}
+
+export default connect(mapStateToProps)(cartScreen)

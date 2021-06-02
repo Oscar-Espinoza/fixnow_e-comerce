@@ -13,7 +13,6 @@ const Products = () => {
   const classes = useStyles()
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList
-  console.log(productList)
   useEffect(() => {
     dispatch(listProducts())
   }, [dispatch]);
