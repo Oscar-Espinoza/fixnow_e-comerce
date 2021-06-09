@@ -2,7 +2,7 @@ import React from 'react'
 import  { Products, Navbar } from './components'
 import { BrowserRouter, Route } from 'react-router-dom'
 import ProductScreen from './components/Products/Product/ProductScreen'
-import cartScreen from './components/Screens/cartScreen'
+import CartScreen from './components/Screens/cartScreen'
 
 const App = () => {
 
@@ -14,7 +14,7 @@ const App = () => {
       </Route>
 
       <Route path='/product/:id' component={ProductScreen} />
-      <Route path='/cart' component={cartScreen} />
+      <Route path='/cart' component={CartScreen} />
     </BrowserRouter>
     
   )

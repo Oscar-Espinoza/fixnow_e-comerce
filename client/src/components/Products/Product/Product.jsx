@@ -5,6 +5,7 @@ import { AddShoppingCart } from '@material-ui/icons'
 import useStyles from './styles'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../redux/actions/cartActions'
+import { Link } from 'react-router-dom'
 
 const Product = ({ product }) => {
 
@@ -13,12 +14,14 @@ const Product = ({ product }) => {
 
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={product.img ? product.img : ''} title={product.name}/>
+            <Link to={`/product/${product.id}`}><CardMedia className={classes.media} image={product.img ? product.img : ''} title={product.name}/></Link>
             <CardContent>
                 <div className={classes.cardContent}>
+                  <Link to={`/product/${product.id}`} style={{textDecoration: 'none', color: 'black'}}>
                     <Typography variant='h5' gutterBottom>
                         {product.name}
                     </Typography>
+                  </Link>                    
                     <Typography variant='body2' color='textSecondary'>
                         {product.description}
                     </Typography>
