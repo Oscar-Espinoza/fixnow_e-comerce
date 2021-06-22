@@ -25,7 +25,7 @@ const ProductScreen = (props) => {
         <Box p={5} pt={8}>
           <Grid container justify='center' spacing={10}>
             <Grid item xs={4}>
-              <CardMedia image={product.img} style={{height: 400} } />
+              <CardMedia image={product.image} style={{height: 400} } />
             </Grid>
             <Grid item xs={4} justify="center" alignItems="center">
               <Card>

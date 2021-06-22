@@ -1,36 +1,36 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 import cors from 'cors'
-import data from './data.js'
 import userRouter from './routers/userRouter.js';
+import productRouter from './routers/productRouter.js';
 
+dotenv.config()
 const app = express();
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}))
 app.use(cors())
-mongoose.connect('mongodb://localhost/amazona', {
+
+
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/fixnow', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
 })
 
-app.get('/api/products', (req, res) => {
-    res.send(data.products)
-})
-
-app.get('/api/products/:id', (req, res) => {
-  const product = data.products.find( (product, index) => {
-    if (product.id === req.params.id) {
-      res.send(data.products[index])
-    }
-  })
-  res.send(data.products)
-})
-
 app.use('/api/users', userRouter)
+app.use('/api/products', productRouter)
+
 app.get('/', (req, res) => {
     res.send('Server is ready')
 });
 
-const port = process.env.port || 4000
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message })
+})
+
+const port = process.env.port || 5000
 app.listen(port, () => {
     console.log(`Serve at http://localhost:${port}`);
 });

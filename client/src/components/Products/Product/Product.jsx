@@ -14,10 +14,10 @@ const Product = ({ product }) => {
 
     return (
         <Card className={classes.root}>
-            <Link to={`/product/${product.id}`}><CardMedia className={classes.media} image={product.img ? product.img : ''} title={product.name}/></Link>
+            <Link to={`/product/${product._id}`}><CardMedia className={classes.media} image={product.image ? product.image : ''} title={product.name}/></Link>
             <CardContent>
                 <div className={classes.cardContent}>
-                  <Link to={`/product/${product.id}`} style={{textDecoration: 'none', color: 'black'}}>
+                  <Link to={`/product/${product._id}`} style={{textDecoration: 'none', color: 'black'}}>
                     <Typography variant='h5' gutterBottom>
                         {product.name}
                     </Typography>
@@ -28,7 +28,7 @@ const Product = ({ product }) => {
                 </div>
                 <CardActions disableSpacing className={classes.CardActions}>
                   {product.inStock > 0 
-                  ? <IconButton arial-label='Add to cart' onClick={() => {dispatch(addToCart(product.id, 1))}}>
+                  ? <IconButton arial-label='Add to cart' onClick={() => {dispatch(addToCart(product._id, 1))}}>
                       <AddShoppingCart />
                     </IconButton>
                     
