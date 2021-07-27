@@ -1,15 +1,33 @@
-import React from 'react'
-import { AppBar, Toolbar, IconButton, Badge, Menu, Typography } from '@material-ui/core'
+import React, { useState } from 'react'
+import { AppBar, Toolbar, IconButton, Badge, Menu, Typography, Button, MenuItem } from '@material-ui/core'
 import { ShoppingCart } from '@material-ui/icons'
 
 import logo from '../../assets/fixnow-logo.png'
 import useStyles from './styles'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { singout } from '../../redux/actions/userActions'
 
-const Navbar = () => {
+const Navbar = (props) => {
     const classes = useStyles()
     const qty = useSelector(state => state.cart.cartItems.length)
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const singoutHandler = () => {
+      dispatch(singout())
+      setAnchorEl(null)
+    }
+
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const dispatch = useDispatch()
+    
     return (
         <>
             <AppBar position='fixed' className={classes.appBar} color='inherit'>
@@ -27,6 +45,25 @@ const Navbar = () => {
                             </Badge>
                         </IconButton>
                     </Link>
+                    
+                    {props.userInfo 
+                      ? (<><Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                      {props.userInfo.name}
+                    </Button>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                      <MenuItem onClick={singoutHandler}>Logout</MenuItem>
+                    </Menu></>)
+                      : (<Link to='/signin' style={{ textDecoration: 'none' }}>Sign In</Link>) 
+                    }
+                    
                 </Toolbar>
 
             </AppBar>
