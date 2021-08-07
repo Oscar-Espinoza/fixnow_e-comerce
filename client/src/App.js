@@ -6,6 +6,7 @@ import CartScreen from './components/Screens/CartScreen'
 import SigninScreen from './components/Screens/SigninScreen'
 import { useSelector } from 'react-redux'
 import RegisterScreen from './components/Screens/RegisterScreen'
+import ShippingScreen from './components/Screens/ShippingScreen'
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
       <Route path='/cart' component={CartScreen} />
       <Route path='/signin' component={SigninScreen} />
       <Route path='/register' component={RegisterScreen} />
+      <Route path='/shipping' component={ShippingScreen} />
     </BrowserRouter>
     
   )

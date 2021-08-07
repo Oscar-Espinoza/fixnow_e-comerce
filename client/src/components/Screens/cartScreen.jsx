@@ -3,6 +3,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../redux/actions/cartActions'
+import Axios from 'axios'
 
 const CartScreen = () => {
 
@@ -59,7 +60,7 @@ const CartScreen = () => {
             </CardContent>
             
             <CardActions>
-            <Button variant="contained" color="primary" disableElevation>
+            <Button variant="contained" color="primary" disableElevation onClick={async () => {await Axios.post('/checkout')}}>
               Continuar compra
             </Button>
             </CardActions>

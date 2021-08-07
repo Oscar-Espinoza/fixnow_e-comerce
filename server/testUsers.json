@@ -1,0 +1,16 @@
+ {  "Vendedor": {
+      "id": 802091653,
+      "nickname": "TETE7317329",
+      "password": "qatest5105",
+      "site_status": "active",
+      "email": "test_user_4846007@testuser.com"
+    },
+
+    "cliente": {
+      "id": 802090229,
+      "nickname": "TESTCBXOPNIV",
+      "password": "qatest7564",
+      "site_status": "active",
+      "email": "test_user_72973714@testuser.com"
+    }
+}
