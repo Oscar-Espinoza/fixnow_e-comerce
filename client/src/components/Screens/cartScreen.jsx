@@ -3,24 +3,33 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../redux/actions/cartActions'
-import Axios from 'axios'
 
 const CartScreen = () => {
 
   const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
+  const inputStyle = {display:'none'}
+  console.log(cart.cartItems)
   
   const createCartList = () => {
     const items = cart.cartItems
     if (items.length !== 0) {
       return items.map((item => {
         return (
+
           <TableRow key={item.product}>
             <TableCell align='right'><Checkbox defaultChecked={true} /></TableCell>
             <TableCell align='center'>{item.name}</TableCell>
             <TableCell align='center'>{item.qty}</TableCell>
             <TableCell align='center'>{item.price}</TableCell>
             <TableCell align='center'><IconButton style={{color: 'black'}}><DeleteIcon onClick={() => { dispatch(removeFromCart(item.product))}}/></IconButton></TableCell>
+
+            <fieldset style={inputStyle}>
+              <input type="text" value={item.name} name='title'/>
+              <input type="number" value={item.qty} name='quantity'/>
+              <input type="number" value={item.price} name='price'/>
+            </fieldset>
+
           </TableRow>
         )
       }))
@@ -31,7 +40,9 @@ const CartScreen = () => {
 
   return (
 
+    
     <Container style={{ paddingTop: 100}}>
+    <form action="http://localhost:5000/checkout" method="POST">
       <Grid container justify='center' spacing={2}>
         <Grid item xs='8' sm container>
           <TableContainer component={Paper}>
@@ -45,6 +56,7 @@ const CartScreen = () => {
                   <TableCell align='center'>Quitar de la lista</TableCell>
                 </TableRow>
               </TableHead>
+              
               <TableBody>
                 {createCartList()}
               </TableBody>
@@ -60,21 +72,17 @@ const CartScreen = () => {
             </CardContent>
             
             <CardActions>
-            <Button variant="contained" color="primary" disableElevation onClick={async () => {await Axios.post('/checkout')}}>
-              Continuar compra
-            </Button>
+              <Button type='submit' variant="contained" color="primary" disableElevation>
+                Continuar compra
+              </Button>            
             </CardActions>
           </Card>
         </Grid>
       </Grid>
+      </form>
     </Container>
+    
 
-    // <div style={{marginTop: '100px'}}>
-    //   <h1>Cart Screen</h1>
-    //   <ul>
-    //     {createCartList()}
-    //   </ul>
-    // </div>
   )
 }
 

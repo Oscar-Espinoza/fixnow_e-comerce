@@ -19,21 +19,34 @@ mercadopago.configure({
 
 app.post('/checkout', (req, res) => {
 
+  
+
   let preference = {
-    items: [
-      {
-        title: 'Mi producto',
-        unit_price: 100,
-        quantity: 1,
-      }
-    ]
+    items: [],
+    back_urls: {
+      success: 'http://localhost:3000/',
+      failure: '/',
+      pending: '/'
+    },
+    auto_return: 'approved'
   };
+  req.body.title.isArray
+  ? req.body.title.forEach((title, index) => {
+    preference.items.push({
+      title: title,
+      quantity: parseInt(req.body.quantity[index]),
+      unit_price: Number(req.body.price[index])
+    })
+  })
+  : preference.items.push( {
+    title: req.body.title,
+    quantity: parseInt(req.body.quantity),
+    unit_price: Number(req.body.price)
+  })  
   
   mercadopago.preferences.create(preference)
   .then(function(response){
-    req.method = 'get'
-    console.log(response.body.init_point)
-    res.redirect('http://google.com')
+    res.redirect(response.body.init_point)
   }).catch(function(error){
     console.log(error);
   });
