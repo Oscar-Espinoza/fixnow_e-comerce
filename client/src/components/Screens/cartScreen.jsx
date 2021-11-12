@@ -9,7 +9,16 @@ const CartScreen = () => {
   const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const inputStyle = {display:'none'}
-  console.log(cart.cartItems)
+  const CalcSubtotal = (items) => {
+    let subtotal = 0
+    if (cart.cartItems.length) {
+      items.forEach(item => {
+        subtotal += item.price
+      });
+    }
+    return subtotal
+    
+  }
   
   const createCartList = () => {
     const items = cart.cartItems
@@ -67,7 +76,7 @@ const CartScreen = () => {
           <Card>
             <CardContent>
               <Typography variant="h5" component="h2">
-                Subtotal: 
+                Subtotal: {CalcSubtotal(cart.cartItems)}
               </Typography>
             </CardContent>
             
