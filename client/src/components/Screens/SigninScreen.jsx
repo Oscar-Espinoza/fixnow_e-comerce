@@ -11,11 +11,11 @@ const SigninScreen = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
-  const redirect = props.location.search ? props.location.search.split('?')[1] : '/'
+  const redirect = props.location.search ? props.location.search.split('=')[1] : '/'
+  console.log(props.location.search)
 
   const userSignin = useSelector(state => state.userSignin)
   const { userInfo, loading, error } = userSignin
-  console.log(userSignin)
 
   const paperStyle={padding:20, height:'70vh', width:280, margin:'100px auto'}
   const avatarStyle={backgroundColor: '#283894'}

@@ -4,11 +4,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../redux/actions/cartActions'
 
-const CartScreen = () => {
+const CartScreen = (props) => {
 
   const cart = useSelector(state => state.cart)
+  const user = useSelector(state => state.userSignin.userInfo)
   const dispatch = useDispatch()
   const inputStyle = {display:'none'}
+
   const CalcSubtotal = (items) => {
     let subtotal = 0
     if (cart.cartItems.length) {
@@ -81,9 +83,15 @@ const CartScreen = () => {
             </CardContent>
             
             <CardActions>
-              <Button type='submit' variant="contained" color="primary" disableElevation>
-                Continuar compra
-              </Button>            
+            {user 
+              ? <Button type='submit' variant="contained" color="primary" disableElevation>
+                  Continuar compra
+                </Button> 
+              : <Button variant="contained" color="primary" onClick={props.history.push('signin?redirect=cart')} disableElevation>
+                  Iniciar sesión
+                </Button> 
+            }
+                         
             </CardActions>
           </Card>
         </Grid>
