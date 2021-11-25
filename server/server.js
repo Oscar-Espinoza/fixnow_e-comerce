@@ -25,12 +25,13 @@ app.post('/checkout', (req, res) => {
     items: [],
     back_urls: {
       success: 'http://localhost:3000/',
-      failure: '/',
-      pending: '/'
+      failure: 'http://localhost:3000/',
+      pending: 'http://localhost:3000/'
     },
     auto_return: 'approved'
   };
-  req.body.title.isArray
+
+  Array.isArray(req.body.title)
   ? req.body.title.forEach((title, index) => {
     preference.items.push({
       title: title,
@@ -43,6 +44,8 @@ app.post('/checkout', (req, res) => {
     quantity: parseInt(req.body.quantity),
     unit_price: Number(req.body.price)
   })  
+
+
   
   mercadopago.preferences.create(preference)
   .then(function(response){
