@@ -87,7 +87,7 @@ const CartScreen = (props) => {
               ? <Button type='submit' variant="contained" color="primary" disableElevation>
                   Continuar compra
                 </Button> 
-              : <Button variant="contained" color="primary" onClick={props.history.push('signin?redirect=cart')} disableElevation>
+              : <Button variant="contained" color="primary" onClick={() => props.history.push('signin?redirect=cart')} disableElevation>
                   Iniciar sesión
                 </Button> 
             }

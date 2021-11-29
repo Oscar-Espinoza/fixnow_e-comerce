@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Toolbar, IconButton, Badge, Menu, Typography, Button, MenuItem } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Badge, Menu, Typography, Button, MenuItem, TextField } from '@material-ui/core'
 import { ShoppingCart } from '@material-ui/icons'
 
 import logo from '../../assets/fixnow-logo.png'
@@ -37,6 +37,7 @@ const Navbar = (props) => {
                         <img src={logo} alt='Commerce.js' height='25px' className={classes.image} />
                     </Typography>
                   </Link>
+                  <TextField id='outlined-basic' variant='outlined' placeholder='search...' size='small'/>
                   <div className={classes.grow} />
                     <Link className={classes.button} style={{ color:'black' }} to='/cart'>
                         <IconButton arial-label='Show cart items' color='inherit'>

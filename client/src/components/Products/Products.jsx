@@ -6,13 +6,20 @@ import { listProducts } from '../../redux/actions/productActions';
 import useStyles from './styles'
 
 import Product from './Product/Product'
+import { useLocation } from 'react-router-dom';
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const Products = () => {
   const dispatch = useDispatch();
   const classes = useStyles()
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList
+  let query = useQuery()
+
+  
 
   useEffect(() => {
     dispatch(listProducts())

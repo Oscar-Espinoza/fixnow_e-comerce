@@ -6,8 +6,15 @@ import Product from '../models/productModel.js'
 const productRouter = express.Router()
 
 productRouter.get('/', expressAsyncHandler(async(req, res) => {
-  const products = await Product.find({})
+
+  let filterText = req.query.text
+  if (filterText == undefined) {
+    filterText = ''
+  }
+  console.log(filterText)
+  const products = await Product.find({name: {$regex: filterText}})
   res.send(products)
+
 }))
 
 productRouter.get('/seed', expressAsyncHandler(async(req, res) => {
@@ -15,7 +22,7 @@ productRouter.get('/seed', expressAsyncHandler(async(req, res) => {
   res.send({ createdProducts })
 }))
 
-productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
+productRouter.get('/product/:id', expressAsyncHandler(async(req, res) => {
   const product = await Product.findById(req.params.id)
   product ? res.send(product) : res.status(404).send({ message: 'Producto no encontrado'})
 }))
