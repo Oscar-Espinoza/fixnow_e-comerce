@@ -18,6 +18,7 @@ const Products = () => {
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList
   let query = useQuery()
+  console.log(query.get('text'))
 
   
 

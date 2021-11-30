@@ -12,7 +12,7 @@ productRouter.get('/', expressAsyncHandler(async(req, res) => {
     filterText = ''
   }
   console.log(filterText)
-  const products = await Product.find({name: {$regex: filterText}})
+  const products = await Product.find({name: {$regex: filterText, $options: 'i'}})
   res.send(products)
 
 }))
