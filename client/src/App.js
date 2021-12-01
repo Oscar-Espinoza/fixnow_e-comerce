@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import  { Products, Navbar } from './components'
 import { BrowserRouter, Route } from 'react-router-dom'
 import ProductScreen from './components/Products/Product/ProductScreen'
@@ -16,10 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar userInfo={userInfo}/>
-      <Route exact path='/'>
-          <Products />
-      </Route>
-
+      <Route exact path='/'><Products /></Route>
       <Route path='/product/:id' component={ProductScreen} />
       <Route path='/cart' component={CartScreen} />
       <Route path='/signin' component={SigninScreen} />

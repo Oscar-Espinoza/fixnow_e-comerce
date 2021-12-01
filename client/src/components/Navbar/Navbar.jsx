@@ -7,12 +7,13 @@ import useStyles from './styles'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { singout } from '../../redux/actions/userActions'
+import { listProducts } from '../../redux/actions/productActions';
 
 const Navbar = (props) => {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const qty = useSelector(state => state.cart.cartItems.length)
     const [anchorEl, setAnchorEl] = useState(null);
-
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -25,8 +26,6 @@ const Navbar = (props) => {
     const handleClose = () => {
       setAnchorEl(null);
     };
-
-    const dispatch = useDispatch()
     
     return (
         <>
@@ -37,7 +36,7 @@ const Navbar = (props) => {
                         <img src={logo} alt='Commerce.js' height='25px' className={classes.image} />
                     </Typography>
                   </Link>
-                  <TextField id='outlined-basic' variant='outlined' placeholder='search...' size='small'/>
+                  <TextField id='outlined-basic' variant='outlined' placeholder='search...' size='small' onChange={(e) => {dispatch(listProducts(e.target.value))}}/>
                   <div className={classes.grow} />
                     <Link className={classes.button} style={{ color:'black' }} to='/cart'>
                         <IconButton arial-label='Show cart items' color='inherit'>

@@ -11,7 +11,6 @@ productRouter.get('/', expressAsyncHandler(async(req, res) => {
   if (filterText == undefined) {
     filterText = ''
   }
-  console.log(filterText)
   const products = await Product.find({name: {$regex: filterText, $options: 'i'}})
   res.send(products)
 
