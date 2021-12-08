@@ -12,13 +12,14 @@ const RegisterScreen = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [isAdmin, setIsAdmin ] = useState(false)
   const dispatch = useDispatch()
-  const redirect = props.location.search ? props.location.search.split('?')[1] : '/'
+  const redirect = props.location.search ? props.location.search.split('=')[1] : '/'
 
   const userRegister = useSelector(state => state.userRegister)
   const { userInfo, loading, error } = userRegister
 
-  const paperStyle={padding:20, height:'70vh', width:280, margin:'100px auto'}
+  const paperStyle={padding:20, width:280, margin:'100px auto'}
   const avatarStyle={backgroundColor: '#283894'}
   const btnStyle={margin:'8px 0'}
 
@@ -48,6 +49,10 @@ const RegisterScreen = (props) => {
 
           <TextField style={btnStyle} id="outlined-basic-2" label="Confirmar contraseña" variant="outlined" type='password' fullWidth required onChange={(e) => {setConfirmPassword(e.target.value)}}/>
 
+          <FormControlLabel control={<Checkbox onChange={(e)=> {
+            setIsAdmin(e.target.checked)
+            }} />} label='Admin?' />
+
         <FormControlLabel
         control={
           <Checkbox
@@ -59,7 +64,7 @@ const RegisterScreen = (props) => {
       />
 
       <Button style={btnStyle} variant='contained' type='submit' color='primary' fullWidth onClick={() => {
-        (password !== confirmPassword) ? alert('La contraseña y confirmar contraseña no coinciden') : dispatch(register(name, username, password))
+        (password !== confirmPassword) ? alert('La contraseña y confirmar contraseña no coinciden') : dispatch(register(name, username, password, isAdmin))
       }}>Registrar</Button>
       <Typography>
         <Link href='#'>¿Olvidaste tu contraseña?</Link>

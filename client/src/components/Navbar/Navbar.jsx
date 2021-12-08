@@ -13,6 +13,7 @@ const Navbar = (props) => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const qty = useSelector(state => state.cart.cartItems.length)
+    const user = useSelector(state => state.userSignIn)
     const [anchorEl, setAnchorEl] = useState(null);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -57,6 +58,7 @@ const Navbar = (props) => {
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
+                      {}
                       <MenuItem onClick={handleClose}>Profile</MenuItem>
                       <MenuItem onClick={handleClose}>My account</MenuItem>
                       <MenuItem onClick={singoutHandler}>Logout</MenuItem>
