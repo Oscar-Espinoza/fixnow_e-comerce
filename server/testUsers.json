@@ -11,6 +11,7 @@
       "nickname": "TESTCBXOPNIV",
       "password": "qatest7564",
       "site_status": "active",
-      "email": "test_user_72973714@testuser.com"
+      "email": "test_user_72973714@testuser.com",
+      "test_cards": "https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-pro/test-integration#bookmark_tarjetas_de_prueba"
     }
 }

@@ -9,7 +9,7 @@ import mercadopago from 'mercadopago'
 dotenv.config()
 const app = express();
 app.use(express.json())
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true }))
 const allowedOrigings = ['http://localhost:3000/', 'https://www.mercadopago.com.ar/']
 app.use(cors())
 
@@ -24,9 +24,9 @@ app.post('/checkout', (req, res) => {
   let preference = {
     items: [],
     back_urls: {
-      success: 'http://localhost:3000/',
-      failure: 'http://localhost:3000/',
-      pending: 'http://localhost:3000/'
+      success: 'http://localhost:3000/my_purchases/add_purchase',
+      failure: 'http://localhost:3000/cart',
+      pending: 'http://localhost:3000/my_purchases/add_purchase'
     },
     auto_return: 'approved'
   };

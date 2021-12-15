@@ -2,11 +2,12 @@ import React from 'react'
 import  { Products, Navbar } from './components'
 import { BrowserRouter, Route } from 'react-router-dom'
 import ProductScreen from './components/Products/Product/ProductScreen'
-import CartScreen from './components/Screens/cartScreen'
+import CartScreen from './components/Screens/CartScreen'
 import SigninScreen from './components/Screens/SigninScreen'
 import { useSelector } from 'react-redux'
 import RegisterScreen from './components/Screens/RegisterScreen'
 import ShippingScreen from './components/Screens/ShippingScreen'
+import AddPurchase from './components/AddPurchase'
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
       <Route path='/signin' component={SigninScreen} />
       <Route path='/register' component={RegisterScreen} />
       <Route path='/shipping' component={ShippingScreen} />
+      <Route path='/my_purchases/add_purchase' component={AddPurchase} />
     </BrowserRouter>
     
   )
