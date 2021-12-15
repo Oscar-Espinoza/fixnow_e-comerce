@@ -23,7 +23,7 @@ const App = () => {
       <Route path='/signin' component={SigninScreen} />
       <Route path='/register' component={RegisterScreen} />
       <Route path='/shipping' component={ShippingScreen} />
-      <Route path='/my_purchases/add_purchase' component={AddPurchase} />
+      <Route path='/my_purchases/add_purchase' component={AddPurchase}/>
     </BrowserRouter>
     
   )
