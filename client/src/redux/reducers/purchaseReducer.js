@@ -1,19 +1,26 @@
-import { ADD_PURCHASE, DELETE_PURCHASE, UPDATE_PURCHASE } from "../constants/purchaseConstants";
+import { PURCHASE_ADD, PURCHASE_DELETE, PURCHASE_HISTORY, PURCHASE_REQUEST, PURCHASE_UPDATE } from "../constants/purchaseConstants";
 
 export const purchaseReducer = (state = {}, action) => {
     switch (action) {
-        case ADD_PURCHASE:
+
+        case PURCHASE_REQUEST:
+
+        break;
+
+        case PURCHASE_ADD:
             
         break;
-        case DELETE_PURCHASE:
+        case PURCHASE_DELETE:
             
         break;
-        case UPDATE_PURCHASE:
+        case PURCHASE_UPDATE:
             
         break;
+
+        case PURCHASE_HISTORY
     
         default:
-            break;
+          return state
     }
   
 }

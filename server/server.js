@@ -30,6 +30,7 @@ app.post('/checkout', (req, res) => {
     },
     auto_return: 'approved'
   };
+  console.log(req.body)
 
   Array.isArray(req.body.title)
   ? req.body.title.forEach((title, index) => {

@@ -1,7 +1,8 @@
 import React from 'react'
 
 const AddPurchase = (props) => {
-    const purchaseInfo = props.location.search.split(/[\=&?]+/)
+    const purchaseInfo = props.location.search.split(/[=&?]+/)
+    console.log(purchaseInfo)
     
     return (
       <div style={{marginTop: '80px'}}>
