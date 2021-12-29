@@ -17,7 +17,9 @@ export const purchaseReducer = (state = {}, action) => {
             
         break;
 
-        case PURCHASE_HISTORY
+        case PURCHASE_HISTORY:
+
+        break;
     
         default:
           return state

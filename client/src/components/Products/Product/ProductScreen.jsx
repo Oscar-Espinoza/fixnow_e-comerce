@@ -3,6 +3,7 @@ import { Box, Card, CardActions, CardContent, Grid, Typography, Button, InputLab
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsProduct } from '../../../redux/actions/productActions';
 import { addToCart } from '../../../redux/actions/cartActions'
+
 const ProductScreen = (props) => {
   const productId = props.match.params.id
   const productDetails = useSelector(state => state.productDetails)
